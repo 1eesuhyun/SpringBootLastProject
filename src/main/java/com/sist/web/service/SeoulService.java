@@ -1,5 +1,5 @@
 package com.sist.web.service;
-import java.util.List;
+import java.util.*;
 import com.sist.web.vo.SeoulVO;
 
 /*
@@ -19,6 +19,7 @@ import com.sist.web.vo.SeoulVO;
  *                                오라클
  */
 public interface SeoulService {
-	public List<SeoulVO> seoulLocationListData(int start);
-	public int seoulLocationTotalPage();
+	public List<SeoulVO> seoulListData(Map map);
+	public int seoulTotalPage(int contenttype);
+	public SeoulVO seoulAttractionDetailData(int contentid);
 }

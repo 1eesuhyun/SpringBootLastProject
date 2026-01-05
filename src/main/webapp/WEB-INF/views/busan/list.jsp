@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.post-headline{
+.post-headline {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
@@ -20,7 +20,7 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="bradcumb-title text-center">
-                        <h2>서울 관광지</h2>
+                        <h2>${name }</h2>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,9 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-post wow fadeInUp" data-wow-delay="0.1s">
                         <div class="post-thumb">
+                         <a href="/busan/location_detail_before?contentid=${vo.contentid }">
                             <img src="${vo.image1 }" style="width: 350px;height: 240px;" title="${vo.title }">
+                         </a>   
                         </div>
                         <div class="post-content">
                             <div class="post-meta d-flex">
@@ -57,9 +59,9 @@
                                         <a href="#">${vo.address }</a>
                                     </div>
                                     <!-- Post Date -->
-                                    <div class="post-date">
+                                    <!-- <div class="post-date">
                                         <a href="#">-</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="post-comment-share-area d-flex">
                                     <!-- Post Favourite -->
@@ -68,7 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="/busan/location_detail_before?contentid=${vo.contentid }">
                                 <h4 class="post-headline">${vo.title }</h4>
                             </a>
                         </div>
@@ -82,17 +84,17 @@
                             <ul class="pagination">
                             <c:if test="${startPage>1 }">
                              <li class="page-item">
-                                    <a class="page-link" href="/seoul/location?page=${startPage-1 }"><i class="fa fa-angle-double-left" aria-hidden="true"> 이전</i></a>
+                                    <a class="page-link" href="/busan/list?page=${startPage-1 }&cno=${cno}"><i class="fa fa-angle-double-left" aria-hidden="true"> 이전</i></a>
                                 </li>
                                 </c:if>
                               <c:forEach var="i" begin="${startPage }" end="${endPage }">
                                 <li class="page-item ${i==curpage?'active':''} ">
-                                    <a class="page-link" href="/seoul/location?page=${i }">${i}</a>
+                                    <a class="page-link" href="/busan/list?page=${i }&cno=${cno}">${i}</a>
                                 </li>
                               </c:forEach>  
                                <c:if test="${endPage<totalpage }">
                                 <li class="page-item">
-                                    <a class="page-link" href="/seoul/location?page=${endPage+1 }">다음 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                                    <a class="page-link" href="/busan/list?page=${endPage+1 }&cno=${cno}">다음 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
                                 </li>
                                </c:if>
                             </ul>

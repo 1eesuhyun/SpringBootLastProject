@@ -9,18 +9,39 @@
  		vo.getLvo().setMsg(re.getString(2))
  	}
  -->
-<resultMap type="com.sist.web.vo.SeoulVO" id="locationMap">
- <result property="lvo.msg" column="msg"/>
- <result property="lvo.restdate" column="restdate"/>
- <result property="lvo.usetime" column="usetime"/>
- <result property="lvo.parking" column="parking"/>
-</resultMap>
-<select id="seoulLocationListData" resultMap="locationMap" parameterType="int">
- SELECT st.no,st.contentid,hit,title,image1,address,msg,restdate,usetime,parking
- FROM seoultravel st JOIN attraction at
- ON st.contentid = at.contentid
- ORDER BY st.no ASC
+<select id="seoulListData" resultType="com.sist.web.vo.SeoulVO" parameterType="hashmap">
+ SELECT no,contentid,hit,title,address,image1,contenttype
+ FROM seoultravel
+ WHERE contenttype=#{contenttype}
+ ORDER BY no ASC
  OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY
 </select>
 
+<!-- 
+	SELECT no,msg,parking ...
+	       SeoulVO vo=new SeoulVO();
+	       vo.avo.setNo(값)
+	       vo.avo.setMsg(값)
+	       vo.avo.setParking(값)
+ -->
+<resultMap type="com.sist.web.vo.SeoulVO" id="attMap">
+ <result property="avo.infocenter" column="infocenter"/>
+ <result property="avo.msg" column="msg"/>
+ <result property="avo.restdate" column="restdate"/>
+ <result property="avo.usetime" column="usetime"/>
+ <result property="avo.parking" column="parking"/>
+</resultMap>
+
+<select id="seoulAttractionDetailData" resultMap="attMap" parameterType="int">
+ SELECT s.no,title,image1,address,x,y,hit,infocenter,restdate,usetime,parking,msg
+ FROM seoultravel s JOIN attraction a
+ ON s.contentid=a.contentid
+ AND s.contentid=#{contentid}
+</select>
+
+<update id="seoulHitIncrement" parameterType="int">
+ UPDATE seoultravel SET
+ hit=hit+1
+ WHERE contentid=#{contentid}
+</update>
 </mapper>

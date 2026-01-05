@@ -663,16 +663,7 @@ li {
     z-index: 1;
 }
 
-.post-author a:after {
-    width: 2px;
-    height: 60%;
-    content: '';
-    position: absolute;
-    top: 20%;
-    right: -14px;
-    z-index: 2;
-    background-color: #b5aec4;
-}
+
 
 .single-post {
     margin-bottom: 30px;

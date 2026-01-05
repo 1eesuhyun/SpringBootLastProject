@@ -11,14 +11,22 @@ public class SeoulServiceImpl implements SeoulService{
 	private final SeoulMapper mapper;
 
 	@Override
-	public List<SeoulVO> seoulLocationListData(int start) {
+	public List<SeoulVO> seoulListData(Map map) {
 		// TODO Auto-generated method stub
-		return mapper.seoulLocationListData(start);
+		return mapper.seoulListData(map);
 	}
 
 	@Override
-	public int seoulLocationTotalPage() {
+	public int seoulTotalPage(int contenttype) {
 		// TODO Auto-generated method stub
-		return mapper.seoulLocationTotalPage();
+		return mapper.seoulTotalPage(contenttype);
 	}
+
+	@Override
+	public SeoulVO seoulAttractionDetailData(int contentid) {
+		// TODO Auto-generated method stub
+		mapper.seoulHitIncrement(contentid);
+		return mapper.seoulAttractionDetailData(contentid);
+	}
+
 }

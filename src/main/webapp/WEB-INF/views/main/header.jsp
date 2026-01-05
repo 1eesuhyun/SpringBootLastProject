@@ -76,34 +76,34 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">서울여행</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="/seoul/location">관광지</a>
-                                        <a class="dropdown-item" href="/seoul/culture">문화시설</a>
-                                        <a class="dropdown-item" href="/seoul/festival">축제 & 공연</a>
-                                        <a class="dropdown-item" href="/seoul/stay">숙박</a>
-                                        <a class="dropdown-item" href="/seoul/shop">쇼핑</a>
-                                        <a class="dropdown-item" href="/seoul/food_store">음식</a>
+                                        <a class="dropdown-item" href="/seoul/list?cno=12">관광지</a>
+                                        <a class="dropdown-item" href="/seoul/list?cno=14">문화시설</a>
+                                        <a class="dropdown-item" href="/seoul/list?cno=15">축제 & 공연</a>
+                                        <a class="dropdown-item" href="/seoul/list?cno=32">숙박</a>
+                                        <a class="dropdown-item" href="/seoul/list?cno=38">쇼핑</a>
+                                        <a class="dropdown-item" href="/seoul/list?cno=39">음식</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">부산여행</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="/busan/location">관광지</a>
-                                        <a class="dropdown-item" href="/busan/culture">문화시설</a>
-                                        <a class="dropdown-item" href="/busan/festival">축제 & 공연</a>
-                                        <a class="dropdown-item" href="/busan/stay">숙박</a>
-                                        <a class="dropdown-item" href="/busan/shop">쇼핑</a>
-                                        <a class="dropdown-item" href="/busan/food_store">음식</a>
+                                        <a class="dropdown-item" href="/busan/list?cno=12">관광지</a>
+                                        <a class="dropdown-item" href="/busan/list?cno=14">문화시설</a>
+                                        <a class="dropdown-item" href="/busan/list?cno=15">축제 & 공연</a>
+                                        <a class="dropdown-item" href="/busan/list?cno=32">숙박</a>
+                                        <a class="dropdown-item" href="/busan/list?cno=38">쇼핑</a>
+                                        <a class="dropdown-item" href="/busan/list?cno=39">음식</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">제주여행</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
-                                        <a class="dropdown-item" href="/jeju/location">관광지</a>
-                                        <a class="dropdown-item" href="/jeju/culture">문화시설</a>
-                                        <a class="dropdown-item" href="/jeju/festival">축제 & 공연</a>
-                                        <a class="dropdown-item" href="/jeju/stay">숙박</a>
-                                        <a class="dropdown-item" href="/jeju/shop">쇼핑</a>
-                                        <a class="dropdown-item" href="/jeju/food_store">음식</a>
+                                        <a class="dropdown-item" href="/jeju/list?cno=12">관광지</a>
+                                        <a class="dropdown-item" href="/jeju/list?cno=14">문화시설</a>
+                                        <a class="dropdown-item" href="/jeju/list?cno=15">축제 & 공연</a>
+                                        <a class="dropdown-item" href="/jeju/list?cno=32">숙박</a>
+                                        <a class="dropdown-item" href="/jeju/list?cno=38">쇼핑</a>
+                                        <a class="dropdown-item" href="/jeju/list?cno=39">음식</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
