@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.web.mapper.SeoulMapper">
+<!-- 
+ 	while(rs.next())
+ 	{
+ 		SeoulVO vo=new SeoulVO();
+ 		vo.setTitle(rs.getString(1))
+ 		vo.getLvo().setMsg(re.getString(2))
+ 	}
+ -->
+<resultMap type="com.sist.web.vo.SeoulVO" id="locationMap">
+ <result property="lvo.msg" column="msg"/>
+ <result property="lvo.restdate" column="restdate"/>
+ <result property="lvo.usetime" column="usetime"/>
+ <result property="lvo.parking" column="parking"/>
+</resultMap>
+<select id="seoulLocationListData" resultMap="locationMap" parameterType="int">
+ SELECT st.no,st.contentid,hit,title,image1,address,msg,restdate,usetime,parking
+ FROM seoultravel st JOIN attraction at
+ ON st.contentid = at.contentid
+ ORDER BY st.no ASC
+ OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY
+</select>
+
+</mapper>
