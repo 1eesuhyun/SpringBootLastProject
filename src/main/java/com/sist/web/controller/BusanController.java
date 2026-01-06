@@ -72,4 +72,11 @@ public class BusanController {
 		// include가 되는 파일을 올린다 => request를 공유할 수 있다
 		return "main/main";
 	}
+	
+	@GetMapping("/busan/find")
+	public String busan_find(Model model)
+	{
+		model.addAttribute("main_jsp", "../busan/busan_find.jsp");
+		return "main/main";
+	}
 }

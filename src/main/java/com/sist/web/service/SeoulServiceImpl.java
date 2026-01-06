@@ -29,4 +29,22 @@ public class SeoulServiceImpl implements SeoulService{
 		return mapper.seoulAttractionDetailData(contentid);
 	}
 
+	@Override
+	public List<SeoulVO> seoulFindData(Map map) {
+		// TODO Auto-generated method stub
+		return mapper.seoulFindData(map);
+	}
+
+	@Override
+	public int seoulFindTotalPage(String address) {
+		// TODO Auto-generated method stub
+		return mapper.seoulFindTotalPage(address);
+	}
+
+	@Override
+	public List<SeoulVO> seoulTop5Data() {
+		// TODO Auto-generated method stub
+		return mapper.seoulTop5Data();
+	}
+
 }

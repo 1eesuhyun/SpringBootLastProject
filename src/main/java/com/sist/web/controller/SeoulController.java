@@ -132,4 +132,11 @@ public class SeoulController {
 		model.addAttribute("main_jsp", jsp);
 		return "main/main";
 	}
+	// 검색 화면 이동
+	@GetMapping("/seoul/find")
+	public String seoun_find(Model model)
+	{
+		model.addAttribute("main_jsp", "../seoul/seoul_find.jsp");
+		return "main/main";
+	}
 }

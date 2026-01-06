@@ -9,4 +9,26 @@
  OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY
 </select>
 
+<select id="jejuFindData" resultType="com.sist.web.vo.JejuVO" parameterType="hashmap">
+ SELECT no,contentid,hit,title,address,image1
+ FROM jejutravel
+ WHERE contenttype=#{selected}
+ AND title LIKE '%'||#{fd}||'%'
+ ORDER BY no ASC
+ OFFSET #{start} ROWS FETCH NEXT 12 ROWS ONLY
+</select>
+
+<select id="jejuFindTotalPage" resultType="int" parameterType="hashmap">
+ SELECT CEIL(COUNT(*)/12.0)
+ FROM jejutravel
+ WHERE contenttype=#{selected}
+ AND title LIKE '%'||#{fd}||'%'
+</select>
+
+<select id="jejuTop4Data" resultType="com.sist.web.vo.JejuVO">
+ SELECT no,contentid,hit,title,address,image1,rownum
+ FROM (SELECT no,contentid,hit,title,address,image1
+ FROM jejutravel ORDER BY hit DESC)
+ WHERE rownum&lt;=4
+</select>
 </mapper>

@@ -19,4 +19,5 @@ public class BusanVO {
 	private int no,contentid, contenttype,hit;
 	private String title,image1,image2,address;
 	private Double x,y;
+	private AttractionVO avo=new AttractionVO();
 }
