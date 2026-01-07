@@ -2,57 +2,51 @@ name: Deploy to Ubuntu Server
 
 on:
   push:
-    branches:
-      - main  # main 브랜치에 푸시될 때 트리거
-
+    branches: 
+    - master  # main branch에서 commit이 있는 경우
+  
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
-    # 코드 체크아웃
+    # 코드 체크 아웃
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    # JDK 17 설정
+    # jdk 17 설정
     - name: Set up JDK 17
       uses: actions/setup-java@v1
       with:
         java-version: '17'
-
-    # gradlew 권한 설정
-    - name: Set gradlew permissions
+        
+    # gradlew 권한 부여
+    - name: Setup Gradlew permissions
       run: |
         chmod +x ./gradlew
 
-    # gradle 빌드
+    # gradle build
     - name: Build with Gradle
       run: ./gradlew build
-
-    - name: Set SSH key permissions
+    
+    - name: Set SSH key permission
       run: |
         mkdir -p ~/.ssh
-        echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/id_rsa
+        echo "${{secrets.SERVER_SSH_KEY}}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-
-    - name: Add SSH key
+    - name: Add SSH Key
       uses: webfactory/ssh-agent@v0.5.3
       with:
-        ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
-
+        ssh-private-key: ${{secrets.SERVER_SSH_KEY}}
 
     - name: Add known_hosts
       run: |
-        ssh-keyscan -H rsa 15.164.164.157 >> ~/.ssh/known_hosts
-
-    #- name: 기존프로세스 종료
-    #  run: |
-    #    kill -9 $(ps -ef | grep devops | grep -v grep | head -n 1 | awk '{print $2}') || true
+        mkdir -p ~/.ssh
+        ssh-keyscan -H 15.164.164.157 >> ~/.ssh/known_hosts
 
     - name: Deploy to Server with rsync
-      run: | 
-         rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/libs/*.war ubuntu@15.164.164.157:~/app
-
+      run: |
+        rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/libs/*.war ubuntu@15.164.164.157:~/app
 
     - name: Run SSH commands
       run: |
