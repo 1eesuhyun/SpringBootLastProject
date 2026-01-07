@@ -51,12 +51,12 @@ jobs:
 
     - name: Deploy to Server with rsync
       run: | 
-         rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/libs/*.jar ubuntu@15.164.164.157:~/app
+         rsync -avz -e "ssh -o StrictHostKeyChecking=no" build/libs/*.war ubuntu@15.164.164.157:~/app
 
 
     - name: Run SSH commands
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@15.164.164.157 << 'EOF'
           pkill -f 'java -jar' || true
-          nohup java -jar ~/app/SpringBootLastProject-0.0.1-SNAPSHOT.jar > log.txt 2>&1 &
+          nohup java -jar ~/app/SpringBootLastProject-0.0.1-SNAPSHOT.war > log.txt 2>&1 &
         EOF
