@@ -3,7 +3,7 @@ name: Deploy to Ubuntu Server
 on:
   push:
     branches: 
-    - master  # main branch에서 commit이 있는 경우
+    - main  # main branch에서 commit이 있는 경우
   
 jobs:
   build:
