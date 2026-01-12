@@ -21,6 +21,24 @@ import lombok.RequiredArgsConstructor;
  *  4. 실시간 메소지 전송 : Kafka / batch
  *  5. MSA : React => NodeJs
  *  6. CI/CD => 통합
+ *  
+ *  
+ *  
+ *  -- procedure
+ *  
+ *  MyBatis
+ *  => 리턴형이 없다
+ *  => CREATE OR REPLACE PROCEDURE proc_name(매개변수...)
+ *     IS
+ *      지역변수
+ *     BEGIN
+ *       기능 처리
+ *     END
+ *     /
+ *     
+ *  -- 목록 출력 / 댓글 => 트리거
+ *  -- 일반 JDBC : CURSOR(ResultSet)
+ *  -- MyBatis : Map으로 리턴
  */
 @Controller
 @RequiredArgsConstructor

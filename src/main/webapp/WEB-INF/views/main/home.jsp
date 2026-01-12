@@ -65,7 +65,7 @@
                                 </div>
                                 <!-- Post Content -->
                                 <div class="post-content">
-                                    <a href="#">
+                                    <a href="https://www.youtube.com/watch?v=hZObjTVVQSE" target="_blank">
                                         <h2 class="post-headline">겨울제주는 느좋 그 자체였다 | 제주여행 VLOG | 유지커피웍스·담소요·위이·동백포레스트·오목제주</h2>
                                     </a>
                                     <p>제주에서 꼭 가봐야하는 필수 여행지를 알려드리려고 합니다! 그동안 봐온 곳 중에서 가장 좋아하는 곳들만 골라보았습니다!!</p>

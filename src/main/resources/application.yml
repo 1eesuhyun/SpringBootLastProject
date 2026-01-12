@@ -16,6 +16,11 @@ spring:
   username: hr
   password: happy
   driver-class-name: oracle.jdbc.OracleDriver
+ #ai:
+  #google:
+   # genai:
+    # api-key: 
+
 #MyBatis
 mybatis:
  type-aliases-package: com.sist.web.vo

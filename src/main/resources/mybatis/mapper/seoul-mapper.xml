@@ -64,4 +64,28 @@
  FROM seoultravel WHERE contenttype=39 ORDER BY hit DESC)
  WHERE rownum&lt;=5
 </select>
+<!--  
+	private int no,contentid;
+	private String eventstartdate,eventenddate,agelimit,playtime,eventplace,eventhomepage,usetime,spendtime,msg;
+	
+	image1,x,y,title,address
+-->
+
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

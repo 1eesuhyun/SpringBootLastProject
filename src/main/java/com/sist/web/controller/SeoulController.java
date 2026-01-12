@@ -46,7 +46,7 @@ public class SeoulController {
 			endPage=totalpage;
 		
 		String name = "";
-
+		
 		switch (cno) {
 		    case 12:
 		        name = "서울 관광지";
@@ -100,35 +100,40 @@ public class SeoulController {
 	}
 	
 	@GetMapping("/seoul/detail")
-	public String seoul_detail(@RequestParam("contenttype")int contenttype, @RequestParam("contentid")int contentid, Model model)
-	{
-		String jsp="";
-		if(contenttype==12)
+	public String seoul_detail(@RequestParam("contentid") int contentid,
+			@RequestParam("contenttype") int contenttype, Model model) {
+		SeoulVO vo = null;
+		String jsp = "";
+
+		if (contenttype == 12)
 		{
-			SeoulVO vo=sservice.seoulAttractionDetailData(contentid);
-			model.addAttribute("vo", vo);
-			jsp="../seoul/attraction.jsp";
-		}
-		else if(contenttype==14)
+			vo = sservice.seoulAttractionDetailData(contentid);
+			jsp = "../seoul/attraction.jsp";
+		} 
+		else if (contenttype == 14) 
 		{
-			jsp="../seoul/culture.jsp";
-		}
-		else if(contenttype==15)
+			jsp = "../seoul/culture.jsp";
+		} 
+		else if (contenttype == 15)
 		{
-			jsp="../seoul/festival.jsp";
-		}
-		else if(contenttype==32)
+			vo = sservice.seoulFestivalDetailData(contentid);
+			jsp = "../seoul/festival.jsp";
+		} 
+		else if (contenttype == 32) 
 		{
-			jsp="../seoul/stay.jsp";
-		}
-		else if(contenttype==38)
+			jsp = "../seoul/stay.jsp";
+		} 
+		else if (contenttype == 38)
 		{
-			jsp="../seoul/shop.jsp";
-		}
-		else if(contenttype==39)
+			jsp = "../seoul/shopping.jsp";
+		} 
+		else if (contenttype == 39) 
 		{
-			jsp="../seoul/food_store.jsp";
+			jsp = "../seoul/foodstore.jsp";
 		}
+
+		model.addAttribute("vo", vo);
+
 		model.addAttribute("main_jsp", jsp);
 		return "main/main";
 	}
