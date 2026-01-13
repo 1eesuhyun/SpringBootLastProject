@@ -102,4 +102,10 @@ public class BoardServiceImpl implements BoardService,BoardReplyService{
 		rmapper.boardReplyDelete(no);
 	}
 
+	@Override
+	public void boardReplyUpdate(BoardReplyVO vo) {
+		// TODO Auto-generated method stub
+		rmapper.boardReplyUpdate(vo);
+	}
+
 }

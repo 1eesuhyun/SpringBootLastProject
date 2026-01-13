@@ -9,7 +9,15 @@
  .a-btn{
  	cursor: pointer;
  }
+ .a-btn:hover {
+	color: white !important;
+	background-color: black;
+}
 </style>
+<script>
+ const SESSION_ID='${sessionScope.userid}'
+ const BNO='${param.no}'
+</script>
 </head>
 <body>
 	<div class="breadcumb-area"
@@ -78,11 +86,11 @@
 				<!-- Comment Area Start -->
 			<div id="comment">
 				<div class="comment_area section_padding_50 clearfix" style="padding-top: 30px;">
-					<h4 class="mb-30">댓글 ({{count}})개</h4>
+					<h4 class="mb-30">댓글 ({{store.count}})개</h4>
 
 					<ol>
 						<!-- Single Comment Area -->
-						<li class="single_comment_area" v-for="(rvo,index) in list" :key="index">
+						<li class="single_comment_area" v-for="(rvo,index) in store.list" :key="index">
 							<div class="comment-wrapper d-flex">
 								<!-- Comment Meta -->
 								<div class="comment-author">
@@ -94,96 +102,50 @@
 									<span class="comment-date text-muted">{{rvo.dbday}}</span>
 									<h5>{{rvo.name}}</h5>
 									<p>{{rvo.msg}}</p>
-									<a class="a-btn" v-if="sessionId===rvo.id">수정</a> <a class="a-btn" v-if="sessionId===rvo.id" @click="replyDelete(rvo.no)">삭제</a>
+									<a class="a-btn" v-if="store.sessionId===rvo.id" @click="store.toggleUpdate(rvo.no,rvo.msg)">{{store.upReplyNo===rvo.no?'취소':'수정'}}</a>
+									<a class="a-btn" v-if="store.sessionId===rvo.id" @click="store.replyDelete(rvo.no)">삭제</a>
 								</div>
 							</div>
-							<!-- <ol class="children">
-								<li class="single_comment_area">
-									<div class="comment-wrapper d-flex">
-										Comment Meta
-										<div class="comment-author">
-											<img src="/img/blog-img/18.jpg" alt="">
-										</div>
-										Comment Content
-										<div class="comment-content">
-											<span class="comment-date text-muted">27 Aug 2018</span>
-											<h5>Brandon Kelley</h5>
-											<p>Neque porro qui squam est, qui dolorem ipsum quia
-												dolor sit amet, consectetur, adipisci velit, sed quia non
-												numquam eius modi tempora.</p>
-											<a href="#">수정</a> <a class="active" href="#">삭제</a>
-										</div>
-									</div>
-								</li>
-							</ol> -->
+							<div class="leave-comment-area section_padding_50 clearfix" v-if="store.sessionId!==''">
+			                    <div class="comment-form" style="padding-left: 130px;" v-if="store.upReplyNo===rvo.no">
+			                        <form action="#" method="post" >
+			                           <textarea v-model="store.updateMsg[rvo.no]" cols="75" rows="5" placeholder="Message" style="float: left;display: inline-block;"></textarea>
+			                           <button type="button" class="btn-primary" style="float: left;width: 100px;height: 120px;display: inline-block;" @click="store.replyUpdate(rvo.no)">댓글수정</button>
+			                        </form>
+			                    </div>
+                			</div>
 						</li>
 					</ol>
 				</div>
-				<div class="leave-comment-area section_padding_50 clearfix" v-if="sessionId!==''">
+				<div class="leave-comment-area section_padding_50 clearfix" v-if="store.sessionId!==''">
                     <div class="comment-form">
                         <form action="#" method="post" >
-                           <textarea ref="msg" v-model="msg" cols="95" rows="5" placeholder="Message" style="float: left;display: inline-block;"></textarea>
-                           <button type="button" class="btn-primary" style="float: left;width: 100px;height: 130px;display: inline-block;" @click="replyWrite()">댓글쓰기</button>
+                           <textarea ref="msgRef" v-model="store.msg" cols="95" rows="5" placeholder="Message" style="float: left;display: inline-block;"></textarea>
+                           <button type="button" class="btn-primary" style="float: left;width: 100px;height: 130px;display: inline-block;" @click="store.replyInsert(msgRef)">댓글쓰기</button>
                         </form>
                     </div>
                 </div>
               </div>
+               <script src="/vue/axios.js"></script>
+               <script src="/vue/reply/boardReplyStore.js"></script>
                 <script>
-                 const commentApp=Vue.createApp({
-                	 data(){
+                 const {createApp,onMounted,ref}=Vue
+                 const {createPinia}=Pinia
+                 const commentApp=createApp({
+                	 setup(){
+                		 const store=useBoardReplyStore()
+                		 const msgRef=ref(null)
+                		 onMounted(()=>{
+                			 store.sessionId=SESSION_ID
+                			 store.replyListData(BNO)
+                		 }) // useEffect(()=>{})
                 		 return {
-                			 list:[],
-                			 count:0,
-                			 bno:'${vo.no}',
-                			 sessionId:'${sessionScope.userid}',
-                			 msg:''
-                		 }
-                	 },
-                	 mounted(){
-						this.dataRecv()                		 
-                	 },
-                	 methods:{
-                		 dataRecv(){
-                			 axios.get('/reply/list_vue/',{
-                				 params:{
-                					 bno:this.bno	 
-                				 }
-                			 }).then(response=>{
-                				 console.log(response.data)
-                				 this.list=response.data.list
-                				 this.count=response.data.count
-                			 })
-                		 },
-                		 replyWrite(){
-                			 if(this.msg==='')
-                			 {
-                				 this.$refs.msg.focus()
-                				 return
-                			 }
-                			 axios.post('/reply/insert_vue/',{
-                				 bno:this.bno,
-                				 msg:this.msg
-                			 }).then(response=>{
-	               				console.log(response.data)
-	               				this.list=response.data.list
-	               				this.count=response.data.count
-	               				this.msg=''
-                			 })
-                		 },
-                		 replyDelete(no){
-                			 axios.delete('/reply/delete_vue/',{
-                				 params:{
-                					 bno:this.bno,
-                    				 no:no
-                				 }
-                			 }).then(response=>{
-	               				console.log(response.data)
-	               				this.list=response.data.list
-	               				this.count=response.data.count
-                			 })
+                			 store,
+                			 msgRef
                 		 }
                 	 }
                  })
+                 commentApp.use(createPinia())
                  commentApp.mount('#comment')
                 </script>
 			</div>

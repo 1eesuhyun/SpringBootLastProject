@@ -108,6 +108,8 @@ public class SeoulController {
 		if (contenttype == 12)
 		{
 			vo = sservice.seoulAttractionDetailData(contentid);
+			String[] addrs=vo.getAddress().split(" ");
+			model.addAttribute("addrs", addrs[1].trim());
 			jsp = "../seoul/attraction.jsp";
 		} 
 		else if (contenttype == 14) 
@@ -117,6 +119,8 @@ public class SeoulController {
 		else if (contenttype == 15)
 		{
 			vo = sservice.seoulFestivalDetailData(contentid);
+			String[] addrs=vo.getAddress().split(" ");
+			model.addAttribute("addrs", addrs[1].trim()+" "+"축제");
 			jsp = "../seoul/festival.jsp";
 		} 
 		else if (contenttype == 32) 
