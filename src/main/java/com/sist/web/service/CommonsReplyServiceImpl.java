@@ -49,21 +49,31 @@ public class CommonsReplyServiceImpl implements CommonsReplyService{
 	}
 
 	@Override
-	@Transactional(rollbackFor = Exception.class)
+	//@Transactional(rollbackFor = Exception.class)
 	public void commonsDelete(int no) {
 		// TODO Auto-generated method stub
 		CommonsReplyVO vo=mapper.commonsInfoData(no);
-		if(vo.getDepth()==0)
-		{
-			mapper.commonsDelete(no);
-		}
-		else
-		{
-			CommonsReplyVO rvo=new CommonsReplyVO();
-			rvo.setNo(no);
-			rvo.setMsg("관리자에 의해 삭제된 댓글입니다");
-			mapper.commonsUpdate(rvo);
-		}
-		mapper.commonsDepthDecre(no);
+		mapper.commonsDelete(vo.getGroup_id());
+	}
+
+	@Override
+	public void commonsUpdate(CommonsReplyVO vo) {
+		// TODO Auto-generated method stub
+		mapper.commonsUpdate(vo);
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public void commonsReplyReplyInsert(CommonsReplyVO vo) {
+		// TODO Auto-generated method stub
+		int pno=vo.getNo();
+		CommonsReplyVO pvo=mapper.commonsReplyParentData(pno);
+		mapper.commonsGroupStepIncrement(pvo);
+		vo.setGroup_id(pvo.getGroup_id());
+		vo.setGroup_step(pvo.getGroup_step()+1);
+		vo.setGroup_tab(pvo.getGroup_tab()+1);
+		vo.setRoot(pno);
+		mapper.commonsReplyReplyInsert(vo);
+		mapper.commonsDepthincrement(pno);
 	}
 }

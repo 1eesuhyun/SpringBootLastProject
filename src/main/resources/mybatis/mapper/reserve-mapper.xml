@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.web.mapper.ReserveMapper">
+ <resultMap type="com.sist.web.vo.ReserveVO" id="resMap">
+  <result column="title" property="svo.title"/>
+  <result column="image1" property="svo.image1"/>
+  <result column="address" property="svo.address"/>
+ </resultMap>
+ <select id="seoulReserveData" resultType="com.sist.web.vo.SeoulVO" parameterType="hashmap">
+     SELECT contentid,image1,title,x,y,address
+	 FROM seoultravel
+	 WHERE contenttype=39
+	 <if test="address!='all'">
+	 AND address LIKE '%'||#{address}||'%'
+	 </if>
+	 ORDER BY contentid ASC
+	 OFFSET #{start} ROWS FETCH NEXT 8 ROWS ONLY
+ </select>
+ <select id="seoulReserveTotalPage" resultType="int" parameterType="hashmap">
+ 	 SELECT CEIL(COUNT(*)/8.0)
+		FROM seoultravel
+		WHERE contenttype=39
+		<if test="address!='all'">
+		AND address LIKE '%'||#{address}||'%'
+		</if>
+ </select>
+</mapper>

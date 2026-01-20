@@ -27,4 +27,6 @@ public interface SeoulService {
 	public List<SeoulVO> seoulTop5Data();
 	
 	public SeoulVO seoulFestivalDetailData(int contentid);
+	
+	public SeoulVO seoulFoodStoreDetailData(int contentid);
 }

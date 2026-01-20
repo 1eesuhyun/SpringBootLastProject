@@ -133,7 +133,11 @@ public class SeoulController {
 		} 
 		else if (contenttype == 39) 
 		{
-			jsp = "../seoul/foodstore.jsp";
+			vo=sservice.seoulFoodStoreDetailData(contentid);
+			String[] addrs=vo.getAddress().split(" ");
+			model.addAttribute("addrs", addrs[1].trim()+" "+"축제");
+			model.addAttribute("vo", vo);
+			jsp = "../seoul/food_store.jsp";
 		}
 
 		model.addAttribute("vo", vo);
@@ -148,4 +152,5 @@ public class SeoulController {
 		model.addAttribute("main_jsp", "../seoul/seoul_find.jsp");
 		return "main/main";
 	}
+	
 }

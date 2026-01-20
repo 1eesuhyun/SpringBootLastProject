@@ -11,7 +11,6 @@
     <link rel="icon" href="/img/core-img/favicon.ico">
     <link href="/style.css" rel="stylesheet">
     <link href="/css/responsive/responsive.css" rel="stylesheet">
-    
     <script src="https://unpkg.com/vue@3.3.4/dist/vue.global.js"></script>
     <script src="https://unpkg.com/vue-demi"></script>
     <script src="https://unpkg.com/pinia@2.1.7/dist/pinia.iife.prod.js"></script>

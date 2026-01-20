@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class FoodStoreVO {
 	/*
-	 * NO            NUMBER         
+	 *  NO            NUMBER         
 		CONTENTID     NUMBER         
 		FIRSTMENU     VARCHAR2(1024) 
 		TREATMENU     VARCHAR2(1024) 

@@ -10,7 +10,11 @@ const useCommonsReplyStore=defineStore('commons_reply',{
 		cno:0,
 		sessionId:'',
 		msg:'',
-		count:0
+		count:0,
+		upReply:null,
+		updateMsg:{},
+		reReplyNo:null,
+		replyMsg:{}
 		// update
 	}),
 	getters:{
@@ -72,7 +76,35 @@ const useCommonsReplyStore=defineStore('commons_reply',{
 				}
 			})
 			this.setPageData(res.data)
-		}
+		},
+		toggleUpdate(no,msg){
+			this.upReplyNo=this.upReplyNo===no?null:no
+			this.updateMsg[no]=msg
+		},
+		async replyUpdate(no){
+			const res=await api.post('/commons/update_vue/',{
+					no:no,
+					cno:this.cno,
+					page:this.curpage,
+					msg:this.updateMsg[no]
+			})
+			this.setPageData(res.data)
+			this.upReplyNo=null
+		},
 		// reply
+		toggleReply(no){
+			this.reReplyNo=this.reReplyNo===no?null:no
+			this.upReplyNo=null
+		},
+		async replyReply(no){
+			const res=await api.post('/commons/reply_reply_insert_vue/',{
+					no:no,
+					cno:this.cno,
+					page:this.curpage,
+					msg:this.replyMsg[no]
+			})
+			this.setPageData(res.data)
+			this.reReplyNo=null
+		}
 	}
 })
