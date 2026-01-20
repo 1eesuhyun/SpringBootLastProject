@@ -44,13 +44,13 @@ jobs:
     - name: Add known_hosts
       run: |
         mkdir -p ~/.ssh
-        ssh-keyscan -t ed25519 3.34.99.43 >> ~/.ssh/known_hosts
+        ssh-keyscan -t ed25519 13.125.116.189 >> ~/.ssh/known_hosts
         chmod 600 ~/.ssh/known_hosts
 
     #  서버 배포
     - name: Deploy
       run: |
-        ssh ubuntu@13.125.116.189 << 'EOF'
+        ssh ubuntu@13.125.116.189 << EOF
           sudo docker stop spring-boot-app || true
           sudo docker rm spring-boot-app || true
           sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-app:latest
