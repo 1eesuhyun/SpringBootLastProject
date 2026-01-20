@@ -51,10 +51,10 @@ jobs:
     - name: Deploy
       run: |
         ssh ubuntu@13.125.116.189 << 'EOF'
-          docker stop spring-boot-app || true
-          docker rm spring-boot-app || true
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-app:latest
-          docker run -d \
+          sudo docker stop spring-boot-app || true
+          sudo docker rm spring-boot-app || true
+          sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-app:latest
+          sudo docker run -d \
             --name spring-boot-app \
             --restart always \
             -p 8080:8080 \
