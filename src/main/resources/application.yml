@@ -6,6 +6,10 @@
 # JPA => JOIN => CRUD
 # WebSocket 설정 / Kafka설정 / MSA 설정
 #Security : 람다식
+server:
+    port: 8080
+    servlet:
+      context-path: /
 spring:
  mvc:
   view:
@@ -20,6 +24,12 @@ spring:
   #google:
    # genai:
     # api-key: 
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
 
 #MyBatis
 mybatis:

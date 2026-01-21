@@ -11,10 +11,14 @@
     <link rel="icon" href="/img/core-img/favicon.ico">
     <link href="/style.css" rel="stylesheet">
     <link href="/css/responsive/responsive.css" rel="stylesheet">
+    <script src="/js/jquery/jquery-2.2.4.min.js"></script>
     <script src="https://unpkg.com/vue@3.3.4/dist/vue.global.js"></script>
     <script src="https://unpkg.com/vue-demi"></script>
     <script src="https://unpkg.com/pinia@2.1.7/dist/pinia.iife.prod.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div id="preloader">
@@ -31,7 +35,7 @@
 	<jsp:include page="${main_jsp }"></jsp:include>
     <jsp:include page="footer.jsp"></jsp:include>
 
-    <script src="/js/jquery/jquery-2.2.4.min.js"></script>
+    
     <script src="/js/bootstrap/popper.min.js"></script>
     <script src="/js/bootstrap/bootstrap.min.js"></script>
     <script src="/js/others/plugins.js"></script>

@@ -133,7 +133,7 @@
                                     <a class="nav-link dropdown-toggle" href="#" id="yummyDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">커뮤니티</a>
                                     <div class="dropdown-menu" aria-labelledby="yummyDropdown">
                                         <a class="dropdown-item" href="/board/list">자유게시판</a>
-                                        <a class="dropdown-item" href="#">공지사항</a>
+                                        <a class="dropdown-item" href="/notice/list">공지사항</a>
                                         <sec:authorize access="isAuthenticated()">
                                          <a class="dropdown-item" href="/chatbot/chatbot">챗봇</a>
                                          <a class="dropdown-item" href="#">1:1 채팅</a>

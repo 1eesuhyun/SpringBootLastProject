@@ -42,6 +42,7 @@ dependencies {
 	implementation 'jakarta.servlet:jakarta.servlet-api'
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
 	implementation 'jakarta.el:jakarta.el-api:6.0.0'
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
 	//implementation 'org.springframework.ai:spring-ai-starter-model-google-genai:1.1.2'
 	
 	compileOnly 'org.projectlombok:lombok'

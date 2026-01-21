@@ -49,4 +49,28 @@ public class ReserveServiceImpl implements ReserveService{
 		}
 		return res;
 	}
+
+	@Override
+	public void reserveOk(int no) {
+		// TODO Auto-generated method stub
+		rmapper.reserveOk(no);
+	}
+
+	@Override
+	public void reserveCancel(int no) {
+		// TODO Auto-generated method stub
+		rmapper.reserveCancel(no);
+	}
+
+	@Override
+	public void reserveDelete(int no) {
+		// TODO Auto-generated method stub
+		rmapper.reserveDelete(no);
+	}
+
+	@Override
+	public ReserveVO reserveDetailData(int no) {
+		// TODO Auto-generated method stub
+		return rmapper.reserveDetailData(no);
+	}
 }

@@ -15,7 +15,7 @@ public class ReserveVO {
 		ISRESERVE          NUMBER
 	 */
 	private int no,cno,isReserve;
-	private String id,rday,rinwon,rtime,dbday;
+	private String id,rday,rinwon,rtime,dbday,iscancel;
 	private Date regdate;
 	
 	private SeoulVO svo=new SeoulVO();
