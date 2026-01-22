@@ -26,7 +26,7 @@ public interface CommonsReplyMapper {
 			+"VALUES(cs1_no_seq.nextval,#{cno},#{id},#{name},#{sex},#{msg},(SELECT NVL(MAX(group_id)+1,1) FROM commonsReply_1))")
 	public void commonsReplyInsert(CommonsReplyVO vo);
 
-	@Select("SELECT root,depth,group_id FROM commonsReply_1 "
+	@Select("SELECT root,id,depth,group_id,group_step FROM commonsReply_1 "
 			+ "WHERE no=#{no}")
 	public CommonsReplyVO commonsInfoData(int no);
 
@@ -39,12 +39,12 @@ public interface CommonsReplyMapper {
 			+ "WHERE group_id=#{group_id}")
 	public void commonsDelete(int group_id);
 
-	@Update("UPDATE commonsReply SET "
+	@Update("UPDATE commonsReply_1 SET "
 			+ "depth=depth-1 "
 			+ "WHERE no=#{no}")
 	public void commonsDepthDecre(int no);
 	
-	@Select("SELECT group_id,group_step,group_tab "
+	@Select("SELECT id,group_id,group_step,group_tab "
 			+ "FROM commonsReply_1 "
 			+ "WHERE no=#{no}")
 	public CommonsReplyVO commonsReplyParentData(int no);

@@ -35,3 +35,7 @@ spring:
 mybatis:
  type-aliases-package: com.sist.web.vo
  mapper-locations: mybatis/mapper/*.xml
+ 
+kma:
+  service-key: "312532f71cf468a34950ed4d0c9a23ca2d2a9e6338bae48cc364697f543ae32b"
+ 

@@ -29,6 +29,37 @@ const useCommonsReplyStore=defineStore('commons_reply',{
 		}
 	},
 	actions:{
+		connect(id){
+			const sock=new SockJS('/ws')
+			this.stomp=Stomp.over(sock)
+			// 구독 => 데이터를 받는 경우 => 어디에 출력
+			/*
+				this.stomp.connect({},()=>{},()=>{})
+				                   -- ------ ------ -> error
+								   |     | connectionCallback
+								 headers
+			*/
+			
+			this.stomp.connect({},()=>{
+				this.stomp.subscribe('/sub/notice/'+id,msg=>{
+					this.showToast(msg.body)
+					this.dataRecv()
+				})
+			})
+		},
+		showToast(message){
+		  const toast = document.getElementById("reserveToast")
+		  const toastMsg = document.getElementById("toastMsg")
+
+		  toastMsg.innerText = message;
+		  toast.classList.add("show");
+
+		  // 3초 후 자동 닫힘
+		  
+		  setTimeout(() => {
+		     hideToast()
+		  }, 5000);
+		},
 		setPageData(data){
 			this.list=data.list
 			this.curpage=data.curpage

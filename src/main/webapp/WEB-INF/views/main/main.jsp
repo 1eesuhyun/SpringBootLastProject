@@ -31,10 +31,9 @@
         <i class="fa fa-times" aria-hidden="true"></i>
     </div>
 
-    <jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="${main_jsp }"></jsp:include>
     <jsp:include page="footer.jsp"></jsp:include>
-
     
     <script src="/js/bootstrap/popper.min.js"></script>
     <script src="/js/bootstrap/bootstrap.min.js"></script>

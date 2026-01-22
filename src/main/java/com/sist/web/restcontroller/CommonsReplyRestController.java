@@ -1,6 +1,7 @@
 package com.sist.web.restcontroller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ public class CommonsReplyRestController {
 
     private final BoardReplyRestController boardReplyRestController;
 	private final CommonsReplyService service;
+	private final SimpMessagingTemplate template;
 
 	public Map commonsData(int page,int cno)
 	{
@@ -71,6 +73,11 @@ public class CommonsReplyRestController {
 			vo.setId(id);
 			vo.setName(name);
 			vo.setSex(sex);
+			String pid=service.commonsReplyReplyInsert(vo);
+			if(!pid.equals(id))
+			{
+				template.convertAndSend("/sub/notice/"+pid,"[🤡댓글 알림🤡] 답글이 달렸습니다");
+			}
 			
 			service.commonsReplyInsert(vo);
 			map=commonsData(vo.getPage(), vo.getCno());

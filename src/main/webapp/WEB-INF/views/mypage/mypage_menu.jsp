@@ -15,7 +15,7 @@
 		<li class="list-group-item"><a href="/mypage/mypage_reserve">예약 정보</a></li>
 		<li class="list-group-item"><a href="#">구매 정보</a></li>
 		<li class="list-group-item"><a href="#">회원 정보</a></li>
-		<li class="list-group-item"><a href="#">공지사항</a></li>
+		<li class="list-group-item"><a href="/notice/list">공지사항</a></li>
 	</ul>
 </div>
 </body>

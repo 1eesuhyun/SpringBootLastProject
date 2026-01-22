@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.sist.web.service.BusanService;
 import com.sist.web.service.JejuService;
+import com.sist.web.service.RealFindDataService;
 import com.sist.web.service.SeoulService;
 import com.sist.web.vo.BusanVO;
 import com.sist.web.vo.JejuVO;
+import com.sist.web.vo.RealFindDataVO;
 import com.sist.web.vo.SeoulVO;
 
 import lombok.RequiredArgsConstructor;
@@ -46,6 +48,7 @@ public class MainController {
 	private final SeoulService sservice;
 	private final BusanService bservice;
 	private final JejuService jservice;
+	private final RealFindDataService rservice;
 	
 	@GetMapping("/main")
 	public String main_page(Model model)
@@ -68,6 +71,9 @@ public class MainController {
 			String[] addrs=vo.getAddress().split(" ");
 			vo.setAddress(addrs[1]+" "+addrs[2]);
 		}
+		
+		List<RealFindDataVO> rlist=rservice.realFindDataList();
+		model.addAttribute("rlist", rlist);
 		
 		model.addAttribute("slist", slist);
 		model.addAttribute("blist", blist);

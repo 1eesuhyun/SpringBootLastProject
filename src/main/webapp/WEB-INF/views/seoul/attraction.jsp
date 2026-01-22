@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/map.css">
+<link rel="stylesheet" href="/css/toast.css">
 <style type="text/css">
 .a-btn, .page-link:hover {
 	cursor: pointer;
@@ -210,6 +211,7 @@
 			</div>
 		</div>
 	</section>
+	<jsp:include page="../commons/toast.jsp"></jsp:include>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e1bce25e48b8adc14d4c02bcf026654c&libraries=services"></script>
 	<script src="/vue/map.js"></script>
 	<script src="/vue/axios.js"></script>
@@ -225,6 +227,7 @@
 			 onMounted(()=>{
 				 store.sessionId=SESSION_ID
 				 store.commonsListData(CNO)
+				 store.connect(SESSION_ID)
 			 })
 			 
 			 return {
